@@ -8,7 +8,7 @@ public class SentenceCapitalization {
             return string;
         }
         //split the string
-        String[] words = string.trim().split(" ");
+        String[] words = string.trim().toLowerCase().split(" ");
         String str = "";
         //capitalize each words
         for(String word: words){
@@ -21,7 +21,7 @@ public class SentenceCapitalization {
     public static void main(String[] args) {
 
         System.out.println(capitalize("hello world"));
-        System.out.println(capitalize("this a string"));
-        System.out.println(capitalize("Look! it's working"));
+        System.out.println(capitalize("this a sTRIng"));
+        System.out.println(capitalize("Look! it's wORKING"));
     }
 }
