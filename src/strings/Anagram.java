@@ -17,42 +17,28 @@ import java.util.Map;
 
 public class Anagram {
 
-    public static boolean isAnagram(String string1, String string2){
+    public static boolean isAnagram(String stringA, String stringB){
         // if string is null
-        if(string1 == null || string2 == null){
+        if(stringA == null || stringB == null){
             return false;
         }
 
         // if string is empty
-        if (string1.isEmpty() || string2.isEmpty()){
+        if (stringA.isEmpty() || stringB.isEmpty()){
             return false;
         }
 
         // it lengths are not same
-        if(string1.length() != string2.length()){
+        if(stringA.length() != stringB.length()){
             return false;
         }
 
-        // remove special characters and spaces from both strings
-        String pattern = "[^a-zA-Z0-9]";
-        String str1 = string1.replaceAll(pattern, "");
-        String str2 = string2.replaceAll(pattern, "");
-
-        // create two arrays of length 128
-        Map<Character, Integer> map1 = new LinkedHashMap<>();
-        Map<Character, Integer> map2 = new LinkedHashMap<>();
-
         // get the character map for each string
-        map1 = getCharacterMap(str1);
-        map2 = getCharacterMap(str2);
+        Map<Character, Integer> mapA = getCharacterMap(stringA);
+        Map<Character, Integer> mapB = getCharacterMap(stringB);
 
-        // compare if both maps are equal, then strings are anagrams
-        if(map1.equals(map2)){
-            return true;
-        }
-
-        // not anagrams
-        return false;
+        // if mapA is equal to mapB then return true, otherwise return false
+        return mapA.equals(mapB);
     }
 
     // character map defines how many times each character occurs in the string
@@ -60,9 +46,11 @@ public class Anagram {
 
         Map<Character, Integer> characterIntegerMap = new LinkedHashMap<>();
 
-        // iterate through string and consider each character as a key and
-        // how many times each character occurs in a string as values
-        for(Character ch: string.toCharArray()){
+        // remove special characters and spaces from the input string
+        // and convert the string to char array
+        // consider each character of the string as a key and
+        // number of times each character occurs in a string as a value
+        for(Character ch: string.replaceAll("[^a-zA-Z0-9]", "").toCharArray()){
 
             // if the character is already in the map
             if(characterIntegerMap.containsKey(ch)){
@@ -81,5 +69,6 @@ public class Anagram {
     public static void main(String[] args) {
 
         System.out.println(isAnagram("safe and sound", "sound and safe"));
+        System.out.println(isAnagram("sleep and sound", "sound and safe"));
     }
 }
