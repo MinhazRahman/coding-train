@@ -1,6 +1,5 @@
 package arrays;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -40,8 +39,8 @@ public class ChunkArray {
         while (fromIndex < size){
             chunkedList.add(list.subList(fromIndex, toIndex));
             fromIndex += chunkSize;
-            // if "fromIndex + n" is greater than size then toIndex = size
-            // otherwise toIndex = fromIndex + n
+            // if "fromIndex + chunkSize" is greater than size then toIndex = size
+            // otherwise toIndex = fromIndex + chunkSize
             toIndex = Math.min(fromIndex + chunkSize, size);
         }
 
