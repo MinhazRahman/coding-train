@@ -33,15 +33,17 @@ public class ChunkArray {
         //declare an array of arrays
         List<List<Integer>> chunkedList = new LinkedList<>();
         int fromIndex = 0;
-        int toIndex = chunkSize;
-        int size = list.size();
+        int toIndex = 0;
+        int listSize = list.size();
 
-        while (fromIndex < size){
-            chunkedList.add(list.subList(fromIndex, toIndex));
-            fromIndex += chunkSize;
+        while (fromIndex < listSize){
             // if "fromIndex + chunkSize" is greater than size then toIndex = size
             // otherwise toIndex = fromIndex + chunkSize
-            toIndex = Math.min(fromIndex + chunkSize, size);
+            toIndex = Math.min(fromIndex + chunkSize, listSize);
+
+            chunkedList.add(list.subList(fromIndex, toIndex));
+
+            fromIndex += chunkSize;
         }
 
         return chunkedList;
@@ -59,8 +61,10 @@ public class ChunkArray {
         list.add(7);
         list.add(8);
 
-       // chunk(list, 2);
 
+        System.out.println(chunkList(list, 2));
         System.out.println(chunkList(list, 3));
+        System.out.println(chunkList(list, 4));
+        System.out.println(chunkList(list, 10));
     }
 }
